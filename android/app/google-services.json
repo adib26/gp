@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1062332858806",
+    "firebase_url": "https://e-learning-cbf3a.firebaseio.com",
+    "project_id": "e-learning-cbf3a",
+    "storage_bucket": "e-learning-cbf3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062332858806:android:122f28b76beca317ec4117",
+        "android_client_info": {
+          "package_name": "com.elearning.gpprojectv01"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062332858806-urif90d7hu6ejk5ise8uvik2729khvfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbY0yl4bZSf2ynqf2ZK8hChc4V7Vcaotk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062332858806-urif90d7hu6ejk5ise8uvik2729khvfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
