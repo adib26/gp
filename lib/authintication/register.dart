@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gpprojectv01/insHome/instractor.dart';
 import 'package:gpprojectv01/services/auth.dart';
+import 'package:gpprojectv01/studentHome/student.dart';
 
 // register ui
 
@@ -124,13 +126,23 @@ class _registerState extends State<register> {
                       child: Text('Register'),
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
-                          dynamic result =
-                              _auth.register(email: email, password: password);
+                          dynamic result = _auth.register(
+                              username: username,
+                              email: email,
+                              password: password,
+                              type: dropdownValue);
 
-                          if (result != null) {
+                          if (result == null) {
                             setState(
                                 () => error = 'please supply a valid email');
                           }
+//                          else {
+//                            if (dropdownValue == 'Student') {
+//                              student();
+//                            } else {
+//                              instractor();
+//                            }
+//                          }
                         }
                       }),
                   Row(
