@@ -27,10 +27,11 @@ class wrapper extends StatelessWidget {
               return Container();
             } else {
               var userDocument = snapshot.data['type'];
+              var instrausername = snapshot.data['username'];
               if (userDocument == 1) {
                 return student();
               } else {
-                return instractor();
+                return instractor(instrausername);
               }
             }
           });

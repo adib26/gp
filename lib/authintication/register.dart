@@ -136,13 +136,6 @@ class _registerState extends State<register> {
                             setState(
                                 () => error = 'please supply a valid email');
                           }
-//                          else {
-//                            if (dropdownValue == 'Student') {
-//                              student();
-//                            } else {
-//                              instractor();
-//                            }
-//                          }
                         }
                       }),
                   Row(

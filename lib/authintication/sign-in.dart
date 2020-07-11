@@ -70,6 +70,7 @@ class _loginState extends State<login> {
                       margin: EdgeInsets.fromLTRB(25, 0, 25, 20),
                       color: Color.fromRGBO(100, 35, 39, 0.3),
                       child: TextFormField(
+                        obscureText: true,
                         validator: (val) =>
                             val == null ? 'Enter your password' : null,
                         decoration: new InputDecoration(
