@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gpprojectv01/models/user.dart';
+import 'package:SemiCollege/models/user.dart';
+import 'package:SemiCollege/models/user.dart';
 import 'database.dart';
 
 class authService {

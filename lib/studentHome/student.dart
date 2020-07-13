@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gpprojectv01/services/auth.dart';
+import 'package:SemiCollege/services/auth.dart';
 
 class student extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _studentState extends State<student> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Text('student'),
+          title: Text('student'),
           actions: <Widget>[
             FlatButton.icon(
                 onPressed: () {

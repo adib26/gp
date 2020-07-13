@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gpprojectv01/insHome/instractor.dart';
-import 'package:gpprojectv01/services/auth.dart';
-import 'package:gpprojectv01/studentHome/student.dart';
+import 'package:SemiCollege/insHome/instractor.dart';
+import 'package:SemiCollege/services/auth.dart';
+import 'package:SemiCollege/studentHome/student.dart';
 
 // register ui
 
@@ -126,15 +126,16 @@ class _registerState extends State<register> {
                       child: Text('Register'),
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
-                          dynamic result = _auth.register(
+                          dynamic result = await _auth.register(
                               username: username,
                               email: email,
                               password: password,
                               type: dropdownValue);
 
                           if (result == null) {
-                            setState(
-                                () => error = 'please supply a valid email');
+                            setState(() {
+                              error = 'your credentials are already taken';
+                            });
                           }
                         }
                       }),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gpprojectv01/authintication/register.dart';
-import 'package:gpprojectv01/insHome/instractor.dart';
-import 'package:gpprojectv01/services/auth.dart';
-import 'package:gpprojectv01/authintication/authintication.dart';
-import 'package:gpprojectv01/services/database.dart';
-import 'package:gpprojectv01/studentHome/student.dart';
-
+import 'package:SemiCollege/authintication/register.dart';
+import 'package:SemiCollege/insHome/instractor.dart';
+import 'package:SemiCollege/services/auth.dart';
+import 'package:SemiCollege/authintication/authintication.dart';
+import 'package:SemiCollege/services/database.dart';
+import 'package:SemiCollege/studentHome/student.dart';
+import 'package:SemiCollege/models/user.dart';
 // login ui
 
 class login extends StatefulWidget {
@@ -94,18 +94,6 @@ class _loginState extends State<login> {
                               error = 'couldn\'t signin with this credentials';
                             });
                           }
-//                          else {
-//                            dynamic type = databaseservice(uid: result.uid)
-//                                .searchforuserinlogin();
-//
-//                            if (type == 1) {
-//                              student();
-//                            } else {
-//                              if (type == 2) {
-//                                instractor();
-//                              }
-//                            }
-//                          }
                         }
                       },
                     ),

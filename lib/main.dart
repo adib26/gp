@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gpprojectv01/authintication/authintication.dart';
-import 'package:gpprojectv01/authintication/sign-in.dart';
-import 'package:gpprojectv01/models/user.dart';
-import 'package:gpprojectv01/services/auth.dart';
-import 'package:gpprojectv01/wrapper.dart';
 import 'package:provider/provider.dart';
+import 'models/user.dart';
+import 'services/auth.dart';
+import 'wrapper.dart';
 
 void main() {
   runApp(myapp());

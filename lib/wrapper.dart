@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:gpprojectv01/authintication/authintication.dart';
-import 'package:gpprojectv01/insHome/instractor.dart';
-import 'package:gpprojectv01/main.dart';
-import 'package:gpprojectv01/models/user.dart';
-import 'package:gpprojectv01/services/auth.dart';
-import 'package:gpprojectv01/studentHome/student.dart';
+import 'authintication/authintication.dart';
+import 'insHome/instractor.dart';
+import 'main.dart';
+import 'models/user.dart';
+import 'services/auth.dart';
+import 'studentHome/student.dart';
 import 'package:provider/provider.dart';
-import 'package:gpprojectv01/services/database.dart';
+import 'services/database.dart';
 
 class wrapper extends StatelessWidget {
   @override
