@@ -13,7 +13,7 @@ class wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<users>(context);
-    print(user);
+    //print(user);
     if (user == null) {
       return authenticate();
     } else {
@@ -28,10 +28,11 @@ class wrapper extends StatelessWidget {
             } else {
               var userDocument = snapshot.data['type'];
               var instrausername = snapshot.data['username'];
+              var uidd = user.uid;
               if (userDocument == 1) {
                 return student();
               } else {
-                return instractor(instrausername);
+                return instractor(instrausername, uidd);
               }
             }
           });

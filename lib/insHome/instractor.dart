@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:SemiCollege/services/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
@@ -7,20 +8,24 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:SemiCollege/storage/uploadvideo.dart';
+import 'package:SemiCollege/models/user.dart';
+import 'package:video_player/video_player.dart';
 
 class instractor extends StatefulWidget {
-  var insun;
+  var insun, uid1;
 
-  instractor(this.insun);
+  instractor(this.insun, this.uid1);
 
   @override
-  _instractorState createState() => _instractorState(insun);
+  _instractorState createState() => _instractorState(insun, uid1);
 }
 
 class _instractorState extends State<instractor> {
   String videoname;
   String insname;
+  String uid2;
   String _path;
+  String vidPath;
 
   Map<String, String> _paths;
   String _extension;
@@ -31,7 +36,7 @@ class _instractorState extends State<instractor> {
   final _formkey = GlobalKey<FormState>();
   String done = '';
 
-  _instractorState(this.insname);
+  _instractorState(this.insname, this.uid2);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +103,6 @@ class _instractorState extends State<instractor> {
                 },
                 child: new Text("Select your video"),
               ),
-              Text(done),
               Flexible(
                 child: ListView(
                   children: children,
@@ -138,18 +142,20 @@ class _instractorState extends State<instractor> {
     }
   }
 
-  upload(fileName, filePath) {
-    _extension = fileName.toString().split('.').last;
+  upload(fileName, filePath) async {
     StorageReference storageRef =
-        FirebaseStorage.instance.ref().child('videos/$insname/$videoname');
-    final StorageUploadTask uploadTask = storageRef.putFile(
-      File(filePath),
-      StorageMetadata(
-        contentType: '$_pickType/$_extension',
-      ),
-    );
+        FirebaseStorage.instance.ref().child('videos').child('$videoname');
+    final StorageUploadTask uploadTask = storageRef.putFile(File(filePath));
     setState(() {
       _tasks.add(uploadTask);
     });
+    await uploadTask.onComplete.then((StorageTaskSnapshot snap) {
+      setState(() {
+        vidPath = snap.storageMetadata.path;
+      });
+    });
+    String url = await storageRef.getDownloadURL();
+    databaseservice db = databaseservice(uid: uid2);
+    db.addvideoMetadatatoInstractor(url, videoname);
   }
 }
