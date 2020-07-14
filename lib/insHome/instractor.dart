@@ -6,11 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:SemiCollege/storage/uploadvideo.dart';
-import 'package:SemiCollege/models/user.dart';
-import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable, camel_case_types
 class instractor extends StatefulWidget {
   var insun, uid1;
 
@@ -20,6 +18,7 @@ class instractor extends StatefulWidget {
   _instractorState createState() => _instractorState(insun, uid1);
 }
 
+// ignore: camel_case_types
 class _instractorState extends State<instractor> {
   String videoname;
   String insname;
@@ -28,10 +27,8 @@ class _instractorState extends State<instractor> {
   String vidPath;
 
   Map<String, String> _paths;
-  String _extension;
   FileType _pickType = FileType.custom;
   bool _multiPick = false;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   List<StorageUploadTask> _tasks = <StorageUploadTask>[];
   final _formkey = GlobalKey<FormState>();
   String done = '';

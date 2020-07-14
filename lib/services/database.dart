@@ -8,6 +8,8 @@ class databaseservice {
 
   final CollectionReference usercollection =
       Firestore.instance.collection("users");
+  final CollectionReference videocollection =
+      Firestore.instance.collection("videos");
 
   Future adduserrecord(
       String username, String email, String password, int type) async {
@@ -20,10 +22,9 @@ class databaseservice {
   }
 
   Future addvideoMetadatatoInstractor(String path, String vidname) async {
-    return await usercollection
-        .document(uid)
-        .collection('videos')
-        .document('$vidname')
-        .setData({'videoname': vidname, 'videopath': path});
+    //String id = videocollection.document().documentID;
+    return await videocollection
+        .document()
+        .setData({'videoname': vidname, 'videourl': path, 'instractorId': uid});
   }
 }
