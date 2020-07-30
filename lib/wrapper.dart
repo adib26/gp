@@ -30,7 +30,7 @@ class wrapper extends StatelessWidget {
               var instrausername = snapshot.data['username'];
               var uidd = user.uid;
               if (userDocument == 1) {
-                return student();
+                return Student();
               } else {
                 return instractor(instrausername, uidd);
               }
