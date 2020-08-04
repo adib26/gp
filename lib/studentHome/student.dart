@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 //import 'package:video_player/video_player.dart';
 //import 'package:flutter/material.dart';
-//import 'package:SemiCollege/insHome/instractor.dart';
+//import 'package:SemiCollege/insHome/upload_video_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:SemiCollege/studentHome/play_video.dart';
-
 
 class Student extends StatelessWidget {
   // This widget is the root of your application.
@@ -16,6 +15,7 @@ class Student extends StatelessWidget {
     return IntroPage();
   }
 }
+
 class IntroPage extends StatefulWidget {
   IntroPage({Key key}) : super(key: key);
 
@@ -40,45 +40,45 @@ class _IntroPageState extends State<IntroPage> {
       ),
       body: SafeArea(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: 120,
-                  ),
-                  Text(
-                    "Welcome Student",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(32)),
-                            side: BorderSide(color: Colors.black45, width: 1)),
-                        color: Colors.white,
-                        onPressed: _start,
-                        minWidth: 240,
-                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        child: Text(
-                          "Play",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
+              SizedBox(
+                height: 120,
+              ),
+              Text(
+                "Welcome Student",
+                style: TextStyle(
+                  fontSize: 30.0,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Expanded(
+                child: Center(
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32)),
+                        side: BorderSide(color: Colors.black45, width: 1)),
+                    color: Colors.white,
+                    onPressed: _start,
+                    minWidth: 240,
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    child: Text(
+                      "Play",
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
             ],
-          )),
+          ),
+        ],
+      )),
     );
   }
 

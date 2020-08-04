@@ -37,7 +37,7 @@ class _registerState extends State<register> {
                 child: Container(),
               ),
               Expanded(
-                flex: 6,
+                flex: 8,
                 child: Column(
                   children: <Widget>[
                     Text(
@@ -178,7 +178,7 @@ class _registerState extends State<register> {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Container(),
               ),
               Row(

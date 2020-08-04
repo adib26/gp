@@ -1,15 +1,13 @@
+import 'package:SemiCollege/instractor/upload_video_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'authintication/authintication.dart';
-import 'insHome/instractor.dart';
-import 'main.dart';
+import 'instractor/main_home.dart';
 import 'models/user.dart';
-import 'services/auth.dart';
-import 'studentHome/student.dart';
 import 'package:provider/provider.dart';
-import 'services/database.dart';
+import 'package:SemiCollege/studentHome/student.dart';
 
-class wrapper extends StatelessWidget {
+class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<users>(context);
@@ -24,15 +22,18 @@ class wrapper extends StatelessWidget {
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Container();
+              return Scaffold(
+                body: Container(),
+              );
             } else {
               var userDocument = snapshot.data['type'];
               var instrausername = snapshot.data['username'];
               var uidd = user.uid;
               if (userDocument == 1) {
                 return Student();
+                //return Scaffold(body: EzTransition());
               } else {
-                return instractor(instrausername, uidd);
+                return Main_Page();
               }
             }
           });

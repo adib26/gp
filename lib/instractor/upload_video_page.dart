@@ -1,21 +1,17 @@
-import 'dart:io';
-
-import 'package:SemiCollege/services/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/services.dart';
 import 'package:SemiCollege/storage/uploadvideo.dart';
+import 'classes/uplode_video.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class instractor extends StatefulWidget {
   var insun, uid1;
-
-  instractor(this.insun, this.uid1);
+  instractor({this.insun, this.uid1});
 
   @override
-  _instractorState createState() => _instractorState(insun, uid1);
+  _instractorState createState() =>
+      _instractorState(insname: insun, uid2: uid1);
 }
 
 // ignore: camel_case_types
@@ -23,25 +19,19 @@ class _instractorState extends State<instractor> {
   String videoname;
   String insname;
   String uid2;
-  String _path;
   String vidPath;
-
-  Map<String, String> _paths;
-  FileType _pickType = FileType.custom;
-  bool _multiPick = false;
-  List<StorageUploadTask> _tasks = <StorageUploadTask>[];
+  List<StorageUploadTask> tasks = <StorageUploadTask>[];
   final _formkey = GlobalKey<FormState>();
-  String done = '';
-
-  _instractorState(this.insname, this.uid2);
+  Upvid upp = new Upvid();
+  _instractorState({this.insname, this.uid2});
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = <Widget>[];
-    _tasks.forEach((StorageUploadTask task) {
+    tasks.forEach((StorageUploadTask task) {
       final Widget tile = UploadTaskListTile(
         task: task,
-        onDismissed: () => setState(() => _tasks.remove(task)),
+        onDismissed: () => setState(() => tasks.remove(task)),
         //onDownload: () => downloadFile(task.lastSnapshot.ref),
       );
       children.add(tile);
@@ -96,7 +86,7 @@ class _instractorState extends State<instractor> {
               ),
               OutlineButton(
                 onPressed: () async {
-                  if (_formkey.currentState.validate()) openFileExplorer();
+                  if (_formkey.currentState.validate()) upp.openFileExplorer();
                 },
                 child: new Text("Select your video"),
               ),
@@ -112,47 +102,8 @@ class _instractorState extends State<instractor> {
     );
   }
 
-  void openFileExplorer() async {
-    try {
-      _path = null;
-      if (_multiPick) {
-        _paths = await FilePicker.getMultiFilePath(
-            type: _pickType, allowedExtensions: ['mp4', 'mkv']);
-      } else {
-        _path = await FilePicker.getFilePath(
-            type: _pickType, allowedExtensions: ['mp4', 'mkv']);
-      }
-      uploadToFirebase();
-    } on PlatformException catch (e) {
-      print("Unsupported operation" + e.toString());
-    }
-    if (!mounted) return;
-  }
-
-  uploadToFirebase() {
-    if (_multiPick) {
-      _paths.forEach((fileName, filePath) => {upload(fileName, filePath)});
-    } else {
-      String fileName = _path.split('/').last;
-      String filePath = _path;
-      upload(fileName, filePath);
-    }
-  }
-
-  upload(fileName, filePath) async {
-    StorageReference storageRef =
-        FirebaseStorage.instance.ref().child('videos').child('$videoname');
-    final StorageUploadTask uploadTask = storageRef.putFile(File(filePath));
-    setState(() {
-      _tasks.add(uploadTask);
-    });
-    await uploadTask.onComplete.then((StorageTaskSnapshot snap) {
-      setState(() {
-        vidPath = snap.storageMetadata.path;
-      });
-    });
-    String url = await storageRef.getDownloadURL();
-    databaseservice db = databaseservice(uid: uid2);
-    db.addvideoMetadatatoInstractor(url, videoname);
+  // ignore: non_constant_identifier_names
+  String GetVideoName() {
+    return videoname;
   }
 }
