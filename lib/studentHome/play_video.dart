@@ -263,10 +263,10 @@ class _PlayPageState extends State<PlayPage> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: SingleChildScrollView(child: Text("끝까지 재생되었습니다.")),
+            content: SingleChildScrollView(child: Text("The list is finished.")),
             actions: <Widget>[
               FlatButton(
-                child: Text("닫기"),
+                child: Text("OK"),
                 onPressed: () => Navigator.pop(context, true),
               )
             ],

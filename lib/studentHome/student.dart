@@ -13,14 +13,7 @@ class Student extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video List Play Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.lime,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: IntroPage(),
-    );
+    return IntroPage();
   }
 }
 class IntroPage extends StatefulWidget {
