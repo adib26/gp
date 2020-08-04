@@ -1,3 +1,4 @@
+import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/authintication/register.dart';
 import 'sign-in.dart';

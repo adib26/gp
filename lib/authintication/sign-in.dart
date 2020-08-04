@@ -1,8 +1,10 @@
+import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
-
+import 'package:SemiCollege/loading-screen/loading-screen.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 // login ui
 
 class login extends StatefulWidget {
@@ -70,7 +72,7 @@ class _loginState extends State<login> {
                         setState(() => email = val);
                       },
                       validator: (val) =>
-                          val == null ? 'Enter your E-mail' : null,
+                          val.length == 0 ? 'Enter your E-mail' : null,
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -86,7 +88,7 @@ class _loginState extends State<login> {
                       obscureText: true,
                       cursorColor: kappbarcolor,
                       validator: (val) =>
-                          val == null ? 'Enter your password' : null,
+                          val.length == 0 ? 'Enter your password' : null,
                       decoration: new InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -110,12 +112,19 @@ class _loginState extends State<login> {
                       textColor: ktextfieldauth,
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EzTransition(),
+                              ));
                           dynamic result = await _auth.login(email, password);
-
                           if (result == null) {
+                            Navigator.pop(context);
                             setState(() {
                               error = 'couldn\'t signin with this credentials';
                             });
+                          } else {
+                            Navigator.pop(context);
                           }
                         }
                       },

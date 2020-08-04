@@ -1,3 +1,4 @@
+import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ class myapp extends StatelessWidget {
     return StreamProvider<users>.value(
       value: authService().user,
       child: MaterialApp(
-        home: SafeArea(child: wrapper()),
+        home: SafeArea(child: Wrapper()),
       ),
     );
   }
