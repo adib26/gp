@@ -5,8 +5,7 @@ import 'authintication/authintication.dart';
 import 'instractor/main_home.dart';
 import 'models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:SemiCollege/studentHome/student.dart';
-
+import 'studentHome/MainStudentPage.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class Wrapper extends StatelessWidget {
               var instrausername = snapshot.data['username'];
               var uidd = user.uid;
               if (userDocument == 1) {
-                return Student();
+                return MainStudent();
                 //return Scaffold(body: EzTransition());
               } else {
                 return Main_Page();

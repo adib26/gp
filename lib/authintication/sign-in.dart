@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
-import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 // login ui
 

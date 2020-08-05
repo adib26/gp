@@ -1,15 +1,15 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:SemiCollege/services/auth.dart';
-//import 'package:video_player/video_player.dart';
-//import 'package:flutter/material.dart';
-//import 'package:SemiCollege/insHome/upload_video_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:SemiCollege/studentHome/play_video.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:SemiCollege/loading-screen/loading-screen.dart';
+class Student extends StatefulWidget {
+  @override
+  _StudentState createState() => _StudentState();
+}
 
-class Student extends StatelessWidget {
-  // This widget is the root of your application.
+class _StudentState extends State<Student> {
   @override
   Widget build(BuildContext context) {
     return IntroPage();
@@ -18,26 +18,30 @@ class Student extends StatelessWidget {
 
 class IntroPage extends StatefulWidget {
   IntroPage({Key key}) : super(key: key);
-
   @override
   _IntroPageState createState() => _IntroPageState();
 }
-
 class _IntroPageState extends State<IntroPage> {
+  dynamic data;
+  var username;
+  Future<dynamic> getData() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    FirebaseUser user = await _auth.currentUser();
+    final DocumentReference document =   Firestore.instance.collection("users").document(user.uid);
+
+    await document.get().then<dynamic>(( DocumentSnapshot snapshot) async{
+      setState(() {
+        data =snapshot.data;
+        username = data['username'];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(username == null)return EzTransition();
+    else
     return Scaffold(
-      appBar: AppBar(
-        title: Text('student'),
-        actions: <Widget>[
-          FlatButton.icon(
-              onPressed: () {
-                authService().signout();
-              },
-              icon: Icon(Icons.assignment_ind),
-              label: Text('logout'))
-        ],
-      ),
       body: SafeArea(
           child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +54,7 @@ class _IntroPageState extends State<IntroPage> {
                 height: 120,
               ),
               Text(
-                "Welcome Student",
+                "Welcome $username",
                 style: TextStyle(
                   fontSize: 30.0,
                 ),
@@ -81,7 +85,10 @@ class _IntroPageState extends State<IntroPage> {
       )),
     );
   }
-
+  void initState(){
+    super.initState();
+    getData();
+  }
   void _start() async {
     Navigator.push(
       context,

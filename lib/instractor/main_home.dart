@@ -5,7 +5,7 @@ import 'package:SemiCollege/instractor/inst_navigation/nav_home.dart';
 import 'package:SemiCollege/instractor/inst_navigation/nav_courses.dart';
 import 'package:SemiCollege/instractor/inst_navigation/nav_notifications.dart';
 import 'inst_navigation/nav_payments.dart';
-
+import 'package:SemiCollege/studentHome/side_menu.dart';
 Widget curWidget = nav_home(); //current body of the instractor page
 
 class Main_Page extends StatefulWidget {
@@ -24,6 +24,7 @@ class _Main_PageState extends State<Main_Page> {
           style: TextStyle(color: kappbackground),
         ),
       ),
+      drawer: SideMenu(),
       backgroundColor: kappbackground,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
