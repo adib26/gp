@@ -6,14 +6,17 @@ import 'instractor/main_home.dart';
 import 'models/user.dart';
 import 'package:provider/provider.dart';
 import 'studentHome/MainStudentPage.dart';
+
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<users>(context);
     //print(user);
     if (user == null) {
+      print('loged out');
       return authenticate();
     } else {
+      print('listener changed');
       return StreamBuilder(
           stream: Firestore.instance
               .collection('users')

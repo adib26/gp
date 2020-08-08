@@ -23,11 +23,16 @@ class authService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      return _userfromfirebaseUser(user);
+      return user;
+//      return _userfromfirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;
     }
+  }
+
+  approve(FirebaseUser user) {
+    return _userfromfirebaseUser(user);
   }
 
 //register

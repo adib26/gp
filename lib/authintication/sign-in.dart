@@ -1,11 +1,11 @@
-import 'package:SemiCollege/loading-screen/loading-screen.dart';
+import 'package:SemiCollege/loading-screen/loading_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-// login ui
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+// login ui
 class login extends StatefulWidget {
   final Function toogleview;
 
@@ -16,6 +16,7 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final authService _auth = authService();
   final _formkey = GlobalKey<FormState>();
   String email;
@@ -25,6 +26,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       resizeToAvoidBottomPadding: false,
       backgroundColor: kappbackground,
       body: Form(
@@ -111,19 +113,26 @@ class _loginState extends State<login> {
                       textColor: ktextfieldauth,
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EzTransition(),
-                              ));
+                          Dialog_loading dia = new Dialog_loading(
+                              bc: _scaffoldKey.currentContext);
+                          await dia.start();
+                          print('\n\n after loading splash\n\n');
                           dynamic result = await _auth.login(email, password);
+                          print('\n\n\ after result \n\n');
+                          await Navigator.of(_scaffoldKey.currentContext,
+                                  rootNavigator: true)
+                              .pop();
+                          print('after poping');
+                          result = await _auth.approve(result);
+                          print('\n\n after approve \n\n');
                           if (result == null) {
-                            Navigator.pop(context);
+//                            Navigator.pop(context);
                             setState(() {
                               error = 'couldn\'t signin with this credentials';
                             });
                           } else {
-                            Navigator.pop(context);
+//                            await Navigator.pop(context);
+                            //_auth.approve(result);
                           }
                         }
                       },
@@ -170,4 +179,5 @@ class _loginState extends State<login> {
       ),
     );
   }
+
 }
