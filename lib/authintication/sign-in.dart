@@ -116,15 +116,15 @@ class _loginState extends State<login> {
                           Dialog_loading dia = new Dialog_loading(
                               bc: _scaffoldKey.currentContext);
                           await dia.start();
-                          print('\n\n after loading splash\n\n');
+                          //print('\n\n after loading splash\n\n');
                           dynamic result = await _auth.login(email, password);
-                          print('\n\n\ after result \n\n');
+                          //print('\n\n\ after result \n\n');
                           await Navigator.of(_scaffoldKey.currentContext,
-                                  rootNavigator: true)
+                                  rootNavigator: false)
                               .pop();
-                          print('after poping');
+                          //print('after poping');
                           result = await _auth.approve(result);
-                          print('\n\n after approve \n\n');
+                          //print('\n\n after approve \n\n');
                           if (result == null) {
 //                            Navigator.pop(context);
                             setState(() {
@@ -179,5 +179,4 @@ class _loginState extends State<login> {
       ),
     );
   }
-
 }

@@ -50,7 +50,7 @@ class authService {
         databaseservice db = await databaseservice(uid: user.uid);
         db.adduserrecord(username, email, password, 2);
       }
-      return _userfromfirebaseUser(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;

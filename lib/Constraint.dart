@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final String kappname = 'fivo';
+final String kappname = 'Eduronic';
 final Color kappbarcolor = Color(0xff0f4c75);
 final Color kappbackground = Color(0xffe4e3e3);
 final Color kapplightcolor = Color(0xff84a9ac);

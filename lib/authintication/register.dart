@@ -1,3 +1,4 @@
+import 'package:SemiCollege/loading-screen/loading_2.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
@@ -14,6 +15,7 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  final GlobalKey<ScaffoldState> _scaffoldKey_2 = GlobalKey<ScaffoldState>();
   final authService _auth = authService();
   final _formkey = GlobalKey<FormState>();
 
@@ -25,6 +27,7 @@ class _registerState extends State<register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey_2,
       resizeToAvoidBottomPadding: false,
       backgroundColor: kappbackground,
       body: Center(
@@ -154,11 +157,19 @@ class _registerState extends State<register> {
                         textColor: ktextfieldauth,
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
+                            Dialog_loading dia = new Dialog_loading(
+                                bc: _scaffoldKey_2.currentContext);
+                            await dia.start();
+
                             dynamic result = await _auth.register(
                                 username: username,
                                 email: email,
                                 password: password,
                                 type: dropdownValue);
+                            await Navigator.of(_scaffoldKey_2.currentContext,
+                                    rootNavigator: true)
+                                .pop();
+                            result = await _auth.approve(result);
 
                             if (result == null) {
                               setState(() {

@@ -9,11 +9,11 @@ class Dialog_loading {
   Dialog_loading({this.bc});
 
   Widget start() {
+    print(bc);
     return _openLoadingDialog(bc);
   }
 
   Widget _openLoadingDialog(BuildContext context) {
-    // the function to get your data from firebase or firestore
     showDialog(
       barrierDismissible: false,
       context: context,
