@@ -158,7 +158,7 @@ class _registerState extends State<register> {
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
                             Dialog_loading dia = new Dialog_loading(
-                                bc: _scaffoldKey_2.currentContext);
+                                _scaffoldKey_2.currentContext);
                             await dia.start();
 
                             dynamic result = await _auth.register(

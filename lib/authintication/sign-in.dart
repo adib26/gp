@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:SemiCollege/loading-screen/loading_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+//import 'package:SemiCollege/loading-screen/loading-screen.dart';
+import 'animation_1.dart';
 
 // login ui
 class login extends StatefulWidget {
@@ -15,13 +19,27 @@ class login extends StatefulWidget {
   _loginState createState() => _loginState();
 }
 
-class _loginState extends State<login> {
+class _loginState extends State<login> with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final authService _auth = authService();
   final _formkey = GlobalKey<FormState>();
   String email;
   String password;
   String error = '';
+  Load load;
+//  static double radius = 6.0;
+//  double intradius = 10;
+//  Animation animation_rotation;
+//  Animation animation_radius_in;
+//  Animation animation_radius_out;
+//  static AnimationController controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    load = new Load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +59,8 @@ class _loginState extends State<login> {
               flex: 6,
               child: Column(
                 children: <Widget>[
-                  Text(
-                    kappname,
-                    style: TextStyle(
-                      color: kappbarcolor,
-                      fontSize: 48,
-                    ),
+                  Container(
+                    child: load,
                   ),
                   SizedBox(
                     height: 10,
@@ -113,26 +127,40 @@ class _loginState extends State<login> {
                       textColor: ktextfieldauth,
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
-                          Dialog_loading dia = new Dialog_loading(
-                              bc: _scaffoldKey.currentContext);
-                          await dia.start();
-                          //print('\n\n after loading splash\n\n');
+                          //Dialog_loading dia =
+                          //    new Dialog_loading(_scaffoldKey.currentContext);
+                          //await dia.start();
+                          BuildContext dialogContext;
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              dialogContext = context;
+                              return Dialog(
+                                backgroundColor: Colors.white,
+                                insetPadding: EdgeInsets.symmetric(
+                                    vertical: 250, horizontal: 100),
+                                child: SpinKitWave(
+                                  color: kappbarcolor,
+                                  type: SpinKitWaveType.start,
+                                  size: 50,
+                                  duration: Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                          );
+                          print('\n\n after loading splash\n\n');
                           dynamic result = await _auth.login(email, password);
-                          //print('\n\n\ after result \n\n');
-                          await Navigator.of(_scaffoldKey.currentContext,
-                                  rootNavigator: false)
-                              .pop();
-                          //print('after poping');
-                          result = await _auth.approve(result);
-                          //print('\n\n after approve \n\n');
+                          print('\n\n\ after result \n\n');
+//                          await dia.end();
+                          Navigator.pop(dialogContext);
+                          print('after poping');
+                          result = _auth.approve(result);
+                          print('\n\n after approve \n\n');
                           if (result == null) {
-//                            Navigator.pop(context);
                             setState(() {
                               error = 'couldn\'t signin with this credentials';
                             });
-                          } else {
-//                            await Navigator.pop(context);
-                            //_auth.approve(result);
                           }
                         }
                       },
@@ -180,3 +208,34 @@ class _loginState extends State<login> {
     );
   }
 }
+
+//class smallDot extends StatefulWidget {
+//  final double loc;
+//  final double rad;
+//  smallDot(this.rad, this.loc);
+//
+//  @override
+//  _smallDotState createState() => _smallDotState();
+//}
+//
+//class _smallDotState extends State<smallDot> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return //RotationTransition(
+//        //turns: _loginState.controller,
+//        // child:
+//        Transform.translate(
+//      offset: Offset(_loginState.radius * cos(widget.loc * pi / 4),
+//          _loginState.radius * sin(widget.loc * pi / 4)),
+//      child: Center(
+//        child: Container(
+//          width: 4,
+//          height: 4,
+//          decoration:
+//              BoxDecoration(shape: BoxShape.circle, color: kappbarcolor),
+//        ),
+//      ),
+//    );
+//    //   );
+//  }
+//}

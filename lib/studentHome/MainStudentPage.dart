@@ -23,7 +23,7 @@ class _MainStudentState extends State<MainStudent> {
       appBar: AppBar(
         backgroundColor: kappbarcolor,
         title: Text(
-          home_title,
+          homeTitle,
           style: TextStyle(color: kappbackground),
         ),
       ),
@@ -33,62 +33,62 @@ class _MainStudentState extends State<MainStudent> {
           Expanded(
             child: curWidget,
           ),
-      Container(
-        height: 50,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      active = 1;
-                      curWidget = nav_home();
-                      home_title = 'Home';
-                    });
-                  },
-                  child: bottomNavBar(ico: Icons.home, id: 1)),
-            ),
-            Expanded(
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      active = 2;
-                      curWidget = nav_courses();
-                      home_title = 'Courses';
-                    });
-                  },
-                  child: bottomNavBar(
-                      ico: Icons.account_balance_wallet, id: 2)),
-            ),
-            Expanded(
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      active = 3;
-                      curWidget = nav_payment();
-                      home_title = 'Payments';
-                    });
-                  },
-                  child: bottomNavBar(ico: Icons.attach_money, id: 3)),
-            ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    active = 4;
-                    curWidget = nav_notification();
-                    home_title = 'Notifications';
-                  });
-                },
-                child: bottomNavBar(
-                  ico: Icons.message,
-                  id: 4,
+          Container(
+            height: 50,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          active = 1;
+                          curWidget = nav_home();
+                          homeTitle = 'Home';
+                        });
+                      },
+                      child: bottomNavBar(ico: Icons.home, id: 1)),
                 ),
-              ),
+                Expanded(
+                  child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          active = 2;
+                          curWidget = nav_courses();
+                          homeTitle = 'Courses';
+                        });
+                      },
+                      child: bottomNavBar(
+                          ico: Icons.account_balance_wallet, id: 2)),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          active = 3;
+                          curWidget = nav_payment();
+                          homeTitle = 'Payments';
+                        });
+                      },
+                      child: bottomNavBar(ico: Icons.attach_money, id: 3)),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        active = 4;
+                        curWidget = nav_notification();
+                        homeTitle = 'Notifications';
+                      });
+                    },
+                    child: bottomNavBar(
+                      ico: Icons.message,
+                      id: 4,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
         ],
       ),
     );
@@ -112,8 +112,8 @@ class _bottomNavBarState extends State<bottomNavBar> {
     return Container(
       decoration: BoxDecoration(
 
-        //if button id equals active or (current button pressed id)
-          color: (active == widget.id) ? kSelectedButton : kNotSelectedButton,
+          //if button id equals active or (current button pressed id)
+          color: kSelectedButton,
           border: Border(right: BorderSide(color: Colors.black, width: 1))),
       child: Center(
         child: Icon(

@@ -35,7 +35,7 @@ class Wrapper extends StatelessWidget {
                 return MainStudent();
                 //return Scaffold(body: EzTransition());
               } else {
-                return Main_Page();
+                return MainPage();
               }
             }
           });

@@ -1,3 +1,4 @@
+import 'package:SemiCollege/loading-screen/loading_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:SemiCollege/studentHome/play_video.dart';

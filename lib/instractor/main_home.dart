@@ -6,21 +6,22 @@ import 'package:SemiCollege/instractor/inst_navigation/nav_courses.dart';
 import 'package:SemiCollege/instractor/inst_navigation/nav_notifications.dart';
 import 'inst_navigation/nav_payments.dart';
 import 'package:SemiCollege/studentHome/side_menu.dart';
+
 Widget curWidget = nav_home(); //current body of the instractor page
 
-class Main_Page extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _Main_PageState createState() => _Main_PageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _Main_PageState extends State<Main_Page> {
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kappbarcolor,
         title: Text(
-          home_title,
+          homeTitle,
           style: TextStyle(color: kappbackground),
         ),
       ),
@@ -36,54 +37,49 @@ class _Main_PageState extends State<Main_Page> {
             height: 50,
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          active = 1;
-                          curWidget = nav_home();
-                          home_title = 'Home';
-                        });
-                      },
-                      child: bottomNavBar(ico: Icons.home, id: 1)),
+                BottomNavBar(
+                  ico: Icons.home,
+                  id: 1,
+                  onPress: () {
+                    setState(() {
+                      active = 1;
+                      curWidget = nav_home();
+                      homeTitle = 'Home';
+                    });
+                  },
                 ),
-                Expanded(
-                  child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          active = 2;
-                          curWidget = nav_courses();
-                          home_title = 'Courses';
-                        });
-                      },
-                      child: bottomNavBar(
-                          ico: Icons.account_balance_wallet, id: 2)),
+                BottomNavBar(
+                  ico: Icons.account_balance_wallet,
+                  id: 2,
+                  onPress: () {
+                    setState(() {
+                      active = 2;
+                      curWidget = nav_courses();
+                      homeTitle = 'Courses';
+                    });
+                  },
                 ),
-                Expanded(
-                  child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          active = 3;
-                          curWidget = nav_payment();
-                          home_title = 'Payments';
-                        });
-                      },
-                      child: bottomNavBar(ico: Icons.attach_money, id: 3)),
+                BottomNavBar(
+                  ico: Icons.attach_money,
+                  id: 3,
+                  onPress: () {
+                    setState(() {
+                      active = 3;
+                      curWidget = nav_payment();
+                      homeTitle = 'Payments';
+                    });
+                  },
                 ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        active = 4;
-                        curWidget = nav_notification();
-                        home_title = 'Notifications';
-                      });
-                    },
-                    child: bottomNavBar(
-                      ico: Icons.message,
-                      id: 4,
-                    ),
-                  ),
+                BottomNavBar(
+                  ico: Icons.message,
+                  id: 4,
+                  onPress: () {
+                    setState(() {
+                      active = 4;
+                      curWidget = nav_notification();
+                      homeTitle = 'Notifications';
+                    });
+                  },
                 ),
               ],
             ),
@@ -94,32 +90,35 @@ class _Main_PageState extends State<Main_Page> {
   }
 }
 
-//show bottomNavbar
+//show bottomNavBar !!!!!!!!!!!!
 
-class bottomNavBar extends StatefulWidget {
-  Color curcol;
-  IconData ico;
-  Color icoColor;
-  int id;
-  bottomNavBar({this.curcol, this.ico, this.icoColor, this.id});
+class BottomNavBar extends StatefulWidget {
+  final IconData ico;
+  final int id;
+  final Function onPress;
+  BottomNavBar({this.ico, this.id, this.onPress});
 
   @override
-  _bottomNavBarState createState() => _bottomNavBarState();
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _bottomNavBarState extends State<bottomNavBar> {
+class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-
-          //if button id equals active or (current button pressed id)
-          color: (active == widget.id) ? kSelectedButton : kNotSelectedButton,
-          border: Border(right: BorderSide(color: Colors.black, width: 1))),
-      child: Center(
-        child: Icon(
-          widget.ico,
-          color: (widget.id == active) ? Colors.white : Colors.black,
+    return Expanded(
+      child: GestureDetector(
+        onTap: widget.onPress,
+        child: Container(
+          decoration: BoxDecoration(
+            color: kSelectedButton,
+          ),
+          child: Center(
+            child: Icon(
+              widget.ico,
+              size: 28,
+              color: (widget.id == active) ? Colors.white : Colors.black,
+            ),
+          ),
         ),
       ),
     );

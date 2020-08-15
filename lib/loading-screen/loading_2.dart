@@ -1,31 +1,53 @@
-import 'package:SemiCollege/authintication/sign-in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:SemiCollege/Constraint.dart';
-import 'package:SemiCollege/services/auth.dart';
 
 class Dialog_loading {
-  BuildContext bc;
-  Dialog_loading({this.bc});
+  BuildContext dialogContext;
+  BuildContext mainpagecontext;
+  Dialog_loading(this.mainpagecontext);
 
   Widget start() {
-    print(bc);
-    return _openLoadingDialog(bc);
+    return _openLoadingDialog(mainpagecontext);
+  }
+
+  end() async {
+    await Navigator.of(mainpagecontext, rootNavigator: true).pop();
   }
 
   Widget _openLoadingDialog(BuildContext context) {
+    BuildContext dialogContext;
     showDialog(
       barrierDismissible: false,
-      context: context,
-      child: new AlertDialog(
-        backgroundColor: Colors.white,
-        insetPadding: EdgeInsets.symmetric(vertical: 250, horizontal: 100),
-        content: SpinKitWave(
-          color: kappbarcolor,
-          type: SpinKitWaveType.start,
-          size: 50,
-          duration: Duration(seconds: 1),
-        ),
+      context: mainpagecontext,
+      builder: (BuildContext context) {
+        dialogContext = context;
+        return Dialog(
+          backgroundColor: Colors.white,
+          insetPadding: EdgeInsets.symmetric(vertical: 250, horizontal: 100),
+          child: SpinKitWave(
+            color: kappbarcolor,
+            type: SpinKitWaveType.start,
+            size: 50,
+            duration: Duration(seconds: 1),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class stt extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      insetPadding: EdgeInsets.symmetric(vertical: 250, horizontal: 100),
+      content: SpinKitWave(
+        color: kappbarcolor,
+        type: SpinKitWaveType.start,
+        size: 50,
+        duration: Duration(seconds: 1),
       ),
     );
   }

@@ -51,22 +51,22 @@ class _EzTransitionState extends State<EzTransition>
     ).animate(CurvedAnimation(
         parent: control, curve: Interval(0.0, 1.0, curve: Curves.linear)));
 
-    animation_radius_in = Tween<double>(begin: 1.0, end: 0.3).animate(
-        CurvedAnimation(
-            parent: control,
-            curve: Interval(0.75, 1.0, curve: Curves.elasticIn)));
-    animation_radius_out = Tween<double>(begin: 0.3, end: 1.0).animate(
-        CurvedAnimation(
-            parent: control,
-            curve: Interval(0.0, 0.25, curve: Curves.elasticOut)));
+//    animation_radius_in = Tween<double>(begin: 1.0, end: 0.3).animate(
+//        CurvedAnimation(
+//            parent: control,
+//            curve: Interval(0.75, 1.0, curve: Curves.elasticIn)));
+//    animation_radius_out = Tween<double>(begin: 0.3, end: 1.0).animate(
+//        CurvedAnimation(
+//            parent: control,
+//            curve: Interval(0.0, 0.25, curve: Curves.elasticOut)));
 
     control.addListener(() {
       setState(() {
-        if (control.value >= 0.75 && control.value <= 1.0) {
-          radius = animation_radius_in.value * intradius;
-        } else if (control.value >= 0.0 && control.value <= 0.25) {
-          radius = animation_radius_out.value * intradius;
-        }
+//        if (control.value >= 0.75 && control.value <= 1.0) {
+//          radius = animation_radius_in.value * intradius;
+//        } else if (control.value >= 0.0 && control.value <= 0.25) {
+//          radius = animation_radius_out.value * intradius;
+//        }
       });
     });
 

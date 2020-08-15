@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'models/user.dart';
 import 'services/auth.dart';
 import 'wrapper.dart';
+import 'authintication/register.dart';
+import 'authintication/sign-in.dart';
 
 void main() {
   runApp(myapp());
@@ -18,6 +20,9 @@ class myapp extends StatelessWidget {
       value: authService().user,
       child: MaterialApp(
         home: SafeArea(child: Wrapper()),
+        routes: {
+          'register': (context) => register(),
+        },
       ),
     );
   }
