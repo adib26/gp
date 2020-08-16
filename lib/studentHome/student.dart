@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:SemiCollege/studentHome/play_video.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:SemiCollege/loading-screen/loading-screen.dart';
-
+import 'package:SemiCollege/Constraint.dart';
 class Student extends StatefulWidget {
   @override
   _StudentState createState() => _StudentState();
@@ -43,9 +42,6 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (username == null)
-      return EzTransition();
-    else
       return Scaffold(
         body: SafeArea(
             child: Row(
@@ -59,7 +55,7 @@ class _IntroPageState extends State<IntroPage> {
                   height: 120,
                 ),
                 Text(
-                  "Welcome $username",
+                  "Hello $username",
                   style: TextStyle(
                     fontSize: 30.0,
                   ),
@@ -71,14 +67,15 @@ class _IntroPageState extends State<IntroPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(32)),
                           side: BorderSide(color: Colors.black45, width: 1)),
-                      color: Colors.white,
+                      color: kapplightcolor2,
                       onPressed: _start,
                       minWidth: 240,
                       padding:
                           EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       child: Text(
-                        "Play",
+                        "Lessons",
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 16,
                         ),
                       ),

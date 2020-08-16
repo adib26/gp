@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:screen/screen.dart';
 import 'package:video_player/video_player.dart';
-
+import 'package:SemiCollege/Constraint.dart';
 class PlayPage extends StatefulWidget {
   PlayPage({Key key}) : super(key: key);
 
@@ -280,6 +280,7 @@ class _PlayPageState extends State<PlayPage> {
       appBar: _isFullScreen
           ? null
           : AppBar(
+        backgroundColor: kappbarcolor,
         title: Text("Play View"),
       ),
       body: _isFullScreen
