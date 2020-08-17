@@ -1,14 +1,13 @@
-import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/authintication/register.dart';
 import 'sign-in.dart';
 
-class authenticate extends StatefulWidget {
+class Authenticate extends StatefulWidget {
   @override
-  _authenticateState createState() => _authenticateState();
+  _AuthenticateState createState() => _AuthenticateState();
 }
 
-class _authenticateState extends State<authenticate> {
+class _AuthenticateState extends State<Authenticate> {
   bool showSignIn = true;
 
   void toogleview() {

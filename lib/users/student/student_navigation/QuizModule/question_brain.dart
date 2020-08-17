@@ -1,4 +1,4 @@
-import 'package:SemiCollege/studentHome/student_navigation/QuizModule/question.dart';
+import 'package:SemiCollege/users/student/student_navigation/QuizModule/question.dart';
 
 class QuizBrain {
   int _questionNumber = 0;
@@ -45,18 +45,15 @@ class QuizBrain {
     return _questionBank[_questionNumber].questionAnswer;
   }
 
-
-  bool isFinished(){
-    if(_questionNumber == _questionBank.length - 1)
-    {
+  bool isFinished() {
+    if (_questionNumber == _questionBank.length - 1) {
       return true;
-    }
-    else
-    {
+    } else {
       return false;
     }
   }
-  void reset(){
+
+  void reset() {
     _questionNumber = 0;
   }
 }

@@ -9,7 +9,9 @@ final Color ktextfieldauth = Color(0xfffffafa);
 
 // instractor main_home
 final Color kSelectedButton = Color(0xff0f4c75);
-Color kSplashColorNavBar = Colors.white;
-int active = 1;
-String homeTitle = 'Home';
+Widget curWidget;
+int active;
+String homeTitle;
 int knavbarheight = 50;
+
+String username;

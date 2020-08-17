@@ -59,7 +59,7 @@ class _registerState extends State<register> {
                           dropdownValue = newValue;
                         });
                       },
-                      items: <String>['Student', 'Teacher']
+                      items: <String>['Student', 'Teacher', 'admin']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

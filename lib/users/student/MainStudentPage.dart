@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:SemiCollege/users/student/side_menu.dart';
 import 'package:SemiCollege/Constraint.dart';
 import 'package:flutter/widgets.dart';
-import 'package:SemiCollege/instractor/inst_navigation/nav_home.dart';
-import 'package:SemiCollege/instractor/inst_navigation/nav_courses.dart';
-import 'package:SemiCollege/instractor/inst_navigation/nav_notifications.dart';
-import 'inst_navigation/nav_payments.dart';
-import 'package:SemiCollege/studentHome/side_menu.dart';
+import 'package:SemiCollege/users/student/student_navigation/nav_home.dart';
+import 'package:SemiCollege/users/student/student_navigation/nav_courses.dart';
+import 'package:SemiCollege/users/student/student_navigation/nav_notifications.dart';
+import 'package:SemiCollege/users/student/student_navigation/nav_payments.dart';
+import 'package:SemiCollege/users/student/student_navigation/test.dart';
+import 'package:SemiCollege/navbars/bottom_navbar.dart';
 
-Widget curWidget = nav_home(); //current body of the instractor page
-
-class MainPage extends StatefulWidget {
+class MainStudent extends StatefulWidget {
   @override
-  _MainPageState createState() => _MainPageState();
+  _MainStudentState createState() => _MainStudentState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainStudentState extends State<MainStudent> {
+  @override
+  void initState() {
+    curWidget = nav_home(); //current body of the instractor page
+    active = 1;
+    homeTitle = 'Home';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +34,7 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
       drawer: SideMenu(),
-      backgroundColor: kappbackground,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: curWidget,
@@ -54,7 +60,7 @@ class _MainPageState extends State<MainPage> {
                   onPress: () {
                     setState(() {
                       active = 2;
-                      curWidget = nav_courses();
+                      curWidget = NavCourses();
                       homeTitle = 'Courses';
                     });
                   },
@@ -81,45 +87,21 @@ class _MainPageState extends State<MainPage> {
                     });
                   },
                 ),
+                BottomNavBar(
+                  ico: Icons.question_answer,
+                  id: 5,
+                  onPress: () {
+                    setState(() {
+                      active = 5;
+                      curWidget = NavQuiz();
+                      homeTitle = 'Quiz';
+                    });
+                  },
+                ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-//show bottomNavBar !!!!!!!!!!!!
-
-class BottomNavBar extends StatefulWidget {
-  final IconData ico;
-  final int id;
-  final Function onPress;
-  BottomNavBar({this.ico, this.id, this.onPress});
-
-  @override
-  _BottomNavBarState createState() => _BottomNavBarState();
-}
-
-class _BottomNavBarState extends State<BottomNavBar> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: widget.onPress,
-        child: Container(
-          decoration: BoxDecoration(
-            color: kSelectedButton,
-          ),
-          child: Center(
-            child: Icon(
-              widget.ico,
-              size: 28,
-              color: (widget.id == active) ? Colors.white : Colors.black,
-            ),
-          ),
-        ),
       ),
     );
   }

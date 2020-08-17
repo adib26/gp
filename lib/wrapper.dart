@@ -1,11 +1,12 @@
-import 'package:SemiCollege/instractor/upload_video_page.dart';
+import 'package:SemiCollege/Constraint.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'authintication/authintication.dart';
-import 'instractor/main_home.dart';
+import 'users/instractor/main_home.dart';
 import 'models/user.dart';
 import 'package:provider/provider.dart';
-import 'studentHome/MainStudentPage.dart';
+import 'users/student/MainStudentPage.dart';
+import 'users/admin/adminHome.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class Wrapper extends StatelessWidget {
     //print(user);
     if (user == null) {
       print('loged out');
-      return authenticate();
+      return Authenticate();
     } else {
       print('listener changed');
       return StreamBuilder(
@@ -29,13 +30,16 @@ class Wrapper extends StatelessWidget {
               );
             } else {
               var userDocument = snapshot.data['type'];
-              var instrausername = snapshot.data['username'];
-              var uidd = user.uid;
+              username = snapshot.data['username'];
+              //var uidd = user.uid;
               if (userDocument == 1) {
                 return MainStudent();
-                //return Scaffold(body: EzTransition());
               } else {
-                return MainPage();
+                if (userDocument == 2) {
+                  return MainPage();
+                } else {
+                  return AdminHome();
+                }
               }
             }
           });

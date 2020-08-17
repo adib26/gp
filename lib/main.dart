@@ -1,19 +1,16 @@
-import 'package:SemiCollege/loading-screen/loading-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'models/user.dart';
 import 'services/auth.dart';
 import 'wrapper.dart';
 import 'authintication/register.dart';
-import 'authintication/sign-in.dart';
 
 void main() {
-  runApp(myapp());
+  runApp(Myapp());
 }
 
-class myapp extends StatelessWidget {
+class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<users>.value(

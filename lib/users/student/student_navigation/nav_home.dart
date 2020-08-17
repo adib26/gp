@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:SemiCollege/studentHome/student.dart';
+import 'package:SemiCollege/users/student/student.dart';
+
 class nav_home extends StatefulWidget {
   @override
   _nav_homeState createState() => _nav_homeState();

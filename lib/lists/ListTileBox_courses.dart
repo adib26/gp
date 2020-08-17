@@ -1,43 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class nav_courses extends StatefulWidget {
-  @override
-  _nav_coursesState createState() => _nav_coursesState();
-}
-
-class _nav_coursesState extends State<nav_courses> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: <Widget>[
-          ListTileBox(
-            title: 'pl2',
-            ico: Icons.build,
-            level: '2',
-          ),
-          ListTileBox(
-            title: 'co',
-            level: '3',
-            ico: Icons.attach_money,
-          ),
-          ListTileBox(
-            title: 'pl1',
-            level: '1',
-            ico: Icons.wifi,
-          ),
-          ListTileBox(
-            title: 'ai',
-            level: '3',
-            ico: Icons.bubble_chart,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
+// ignore: must_be_immutable
 class ListTileBox extends StatefulWidget {
   IconData ico;
   String title;

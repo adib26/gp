@@ -7,7 +7,7 @@ import 'package:SemiCollege/services/auth.dart';
 import 'package:SemiCollege/Constraint.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 //import 'package:SemiCollege/loading-screen/loading-screen.dart';
-import 'animation_1.dart';
+import '../loading-screen/animation_1.dart';
 
 // login ui
 class login extends StatefulWidget {

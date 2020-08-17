@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:SemiCollege/studentHome/student_navigation/QuizModule/the_quiz_room.dart';
+import 'package:SemiCollege/users/student/student_navigation/QuizModule/the_quiz_room.dart';
 import 'package:SemiCollege/Constraint.dart';
 
 class NavQuiz extends StatefulWidget {
@@ -30,9 +30,9 @@ class _NavQuizState extends State<NavQuiz> {
               child: Text('Ready'),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => QuizRoom()
-                ),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuizRoom()),
                 );
               },
             ),
@@ -41,6 +41,7 @@ class _NavQuizState extends State<NavQuiz> {
       },
     );
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -63,7 +64,7 @@ class _NavQuizState extends State<NavQuiz> {
                             fontSize: 20.0,
                           ),
                         ),
-                        onPressed: (){
+                        onPressed: () {
                           setState(() {
                             _showMyDialog();
                           });
@@ -88,7 +89,7 @@ class _NavQuizState extends State<NavQuiz> {
                             fontSize: 20.0,
                           ),
                         ),
-                        onPressed: (){
+                        onPressed: () {
                           setState(() {
                             _showMyDialog();
                           });
@@ -105,4 +106,3 @@ class _NavQuizState extends State<NavQuiz> {
     );
   }
 }
-

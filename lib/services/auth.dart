@@ -46,8 +46,13 @@ class authService {
         databaseservice db = await databaseservice(uid: user.uid);
         db.adduserrecord(username, email, password, 1);
       } else {
-        databaseservice db = await databaseservice(uid: user.uid);
-        db.adduserrecord(username, email, password, 2);
+        if (type == 'Teacher') {
+          databaseservice db = await databaseservice(uid: user.uid);
+          db.adduserrecord(username, email, password, 2);
+        } else {
+          databaseservice db = await databaseservice(uid: user.uid);
+          db.adduserrecord(username, email, password, 3);
+        }
       }
       return user;
     } catch (e) {
