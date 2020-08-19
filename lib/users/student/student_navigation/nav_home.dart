@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:SemiCollege/users/student/student.dart';
+import 'package:SemiCollege/users/student/videos_play_button.dart';
 
 class nav_home extends StatefulWidget {
   @override
@@ -9,6 +9,6 @@ class nav_home extends StatefulWidget {
 class _nav_homeState extends State<nav_home> {
   @override
   Widget build(BuildContext context) {
-    return Student();
+    return Videos();
   }
 }

@@ -5,12 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:SemiCollege/Constraint.dart';
 
-class Student extends StatefulWidget {
+class Videos extends StatefulWidget {
   @override
-  _StudentState createState() => _StudentState();
+  _VideosState createState() => _VideosState();
 }
 
-class _StudentState extends State<Student> {
+class _VideosState extends State<Videos> {
   @override
   Widget build(BuildContext context) {
     return IntroPage();

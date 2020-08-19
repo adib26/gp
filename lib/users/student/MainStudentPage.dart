@@ -1,3 +1,4 @@
+import 'package:SemiCollege/users/student/students_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/users/student/side_menu.dart';
 import 'package:SemiCollege/Constraint.dart';
@@ -8,6 +9,8 @@ import 'package:SemiCollege/users/student/student_navigation/nav_notifications.d
 import 'package:SemiCollege/users/student/student_navigation/nav_payments.dart';
 import 'package:SemiCollege/users/student/student_navigation/test.dart';
 import 'package:SemiCollege/navbars/bottom_navbar.dart';
+
+import '../../Constraint.dart';
 
 class MainStudent extends StatefulWidget {
   @override
@@ -33,7 +36,12 @@ class _MainStudentState extends State<MainStudent> {
           style: TextStyle(color: kappbackground),
         ),
       ),
-      drawer: SideMenu(),
+      drawer: SideMenu(FeedbackOnTap : (){
+        setState(() {
+          curWidget = StudentFeedback();
+          Navigator.pop(context);
+        });
+      }),
       body: Column(
         children: <Widget>[
           Expanded(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:SemiCollege/services/auth.dart';
 class SideMenu extends StatelessWidget {
+  final Function FeedbackOnTap;
+  SideMenu({this.FeedbackOnTap});
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -28,6 +30,7 @@ class SideMenu extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.border_color),
               title: Text('Feedback'),
+              onTap: FeedbackOnTap,
               ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
